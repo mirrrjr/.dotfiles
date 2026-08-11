@@ -1,0 +1,44 @@
+[
+    {
+        "context": "Workspace",
+        "bindings": {
+            "shift shift": "file_finder::Toggle",
+        },
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "j j": "vim::NormalBefore",
+        },
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "ctrl-s": "workspace::Save",
+        },
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "ctrl-w": "pane::CloseActiveItem",
+            "ctrl-b": "workspace::ToggleLeftDock",
+            "alt-h": "workspace::ActivatePaneLeft",
+            "alt-l": "workspace::ActivatePaneRight",
+            "alt-k": "workspace::ActivatePaneUp",
+            "alt-j": "workspace::ActivatePaneDown",
+        },
+    },
+
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "alt-n": "project_panel::NewFile",
+            // "D": "project_panel::Trash",
+            // "R": "project_panel::Rename",
+            "alt-c": "project_panel::Copy",
+            "alt-p": "project_panel::Paste",
+            "alt-l": "workspace::ActivatePaneRight",
+            "alt-h": "workspace::ActivatePaneLeft",
+        },
+    },
+]
