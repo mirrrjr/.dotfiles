@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="uz">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>mirjr/dotfiles</title>
+        <meta
+            name="description"
+            content="Şahsiy dotfiles repozitoriysi — GNU Stow va git-crypt bilan boşqariladi."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #080808;
+                --bg-alt: #171717;
+                --bg-raised: #1c1c1c;
+                --line: #2b2b2b;
+                --fg: #bdbdbd;
+                --fg-dim: #6b6b6b;
+                --fg-bright: #f4f4f0;
+                --purple: #cf87e8;
+                --blue: #74b2ff;
+                --green: #8cc85f;
+                --orange: #de935f;
+                --cyan: #78dce8;
+                --red: #ff5454;
+                --yellow: #ffc66d;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--fg);
+                font-family:
+                    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+                    monospace;
+                font-size: 15px;
+                line-height: 1.65;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            ::selection {
+                background: var(--purple);
+                color: var(--bg);
+            }
+
+            a {
+                color: var(--blue);
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+            }
+            a:hover {
+                border-bottom-color: var(--blue);
+            }
+
+            .wrap {
+                max-width: 760px;
+                margin: 0 auto;
+                padding: 5vh 20px 10vh;
+            }
+
+            /* ---------- terminal chrome ---------- */
+            .term {
+                background: var(--bg-alt);
+                border: 1px solid var(--line);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+            }
+            .term + .term {
+                margin-top: 28px;
+            }
+
+            .term-bar {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 14px;
+                background: var(--bg-raised);
+                border-bottom: 1px solid var(--line);
+            }
+            .dot {
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                background: var(--line);
+            }
+            .dot.red {
+                background: var(--red);
+            }
+            .dot.yellow {
+                background: var(--yellow);
+            }
+            .dot.green {
+                background: var(--green);
+            }
+
+            .term-title {
+                margin-left: 8px;
+                font-size: 12px;
+                color: var(--fg-dim);
+                letter-spacing: 0.02em;
+            }
+
+            .term-body {
+                padding: 18px 20px 22px;
+            }
+
+            .prompt {
+                color: var(--green);
+            }
+            .prompt .path {
+                color: var(--blue);
+            }
+            .prompt .sym {
+                color: var(--fg-dim);
+            }
+
+            .cmd {
+                color: var(--fg-bright);
+            }
+            .cmt {
+                color: var(--fg-dim);
+            }
+
+            pre {
+                margin: 10px 0 0;
+                white-space: pre-wrap;
+                word-break: break-word;
+                font-family: inherit;
+                font-size: 14px;
+            }
+
+            /* ---------- typing caret ---------- */
+            .type-line {
+                position: relative;
+                white-space: pre;
+            }
+            .type-line .caret {
+                display: inline-block;
+                width: 8px;
+                height: 1em;
+                background: var(--green);
+                margin-left: 2px;
+                vertical-align: -2px;
+                animation: blink 1s steps(1) infinite;
+            }
+            .type-line.done .caret {
+                display: none;
+            }
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            /* ---------- hero listing ---------- */
+            .ls-row {
+                display: grid;
+                grid-template-columns: 90px 56px 1fr;
+                gap: 12px;
+                padding: 3px 0;
+                opacity: 0;
+                transform: translateY(-2px);
+                animation: rowIn 0.25s ease forwards;
+            }
+            .ls-row .perm {
+                color: var(--fg-dim);
+            }
+            .ls-row .size {
+                color: var(--orange);
+                text-align: right;
+            }
+            .ls-row .name.dir {
+                color: var(--blue);
+            }
+            .ls-row .name.file {
+                color: var(--fg);
+            }
+            .ls-row .name.enc::after {
+                content: " 🔒";
+                filter: grayscale(1);
+                opacity: 0.6;
+            }
+            @keyframes rowIn {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* ---------- headings / steps ---------- */
+            h1 {
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--fg-bright);
+                margin: 0 0 4px;
+            }
+            .sub {
+                color: var(--fg-dim);
+                font-size: 13px;
+                margin: 0 0 28px;
+            }
+
+            .step-head {
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                margin: 0 0 10px;
+            }
+            .step-num {
+                color: var(--purple);
+                font-weight: 700;
+                font-size: 13px;
+            }
+            .step-title {
+                color: var(--fg-bright);
+                font-weight: 500;
+                font-size: 15px;
+            }
+            .step-note {
+                color: var(--fg-dim);
+                font-size: 13.5px;
+                margin: 10px 0 0;
+            }
+            .step-note code {
+                color: var(--cyan);
+            }
+
+            section {
+                margin-top: 40px;
+            }
+            section:first-of-type {
+                margin-top: 0;
+            }
+
+            /* ---------- fastfetch panel ---------- */
+            .fetch {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+            .fetch .row {
+                display: flex;
+                gap: 10px;
+            }
+            .fetch .key {
+                color: var(--purple);
+                min-width: 84px;
+            }
+            .fetch .val {
+                color: var(--fg);
+            }
+            .fetch .bars {
+                display: flex;
+                gap: 4px;
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+            .fetch .bar {
+                width: 16px;
+                height: 12px;
+                border-radius: 2px;
+            }
+
+            /* ---------- footer ---------- */
+            footer {
+                margin-top: 48px;
+                padding-top: 20px;
+                border-top: 1px solid var(--line);
+                color: var(--fg-dim);
+                font-size: 13px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            @media (max-width: 560px) {
+                .wrap {
+                    padding: 6vw 14px 14vw;
+                }
+                .ls-row {
+                    grid-template-columns: 60px 44px 1fr;
+                    font-size: 13px;
+                }
+                .term-body {
+                    padding: 14px 14px 18px;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .ls-row {
+                    animation: none;
+                    opacity: 1;
+                    transform: none;
+                }
+                .caret {
+                    animation: none;
+                }
+                html {
+                    scroll-behavior: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1>mirjr@dotfiles</h1>
+            <p class="sub">
+                Şahsiy terminal va editor konfiguratsiyalari —
+                <span style="color: var(--fg)">GNU Stow</span> bilan
+                boşqariladi, mahfiy qismlar
+                <span style="color: var(--fg)">git-crypt</span> bilan
+                şifrlangan.
+            </p>
+
+            <!-- HERO: repo tree -->
+            <div class="term">
+                <div class="term-bar">
+                    <span class="dot red"></span><span class="dot yellow"></span
+                    ><span class="dot green"></span>
+                    <span class="term-title">mirjr@dotfiles — zsh</span>
+                </div>
+                <div class="term-body">
+                    <div class="prompt">
+                        <span class="path">~/.dotfiles</span>
+                        <span class="sym">git:(master)</span>
+                        <span class="cmd">l</span>
+                    </div>
+                    <div id="tree" style="margin-top: 10px"></div>
+                </div>
+            </div>
+
+            <!-- FASTFETCH PANEL -->
+            <div class="term">
+                <div class="term-bar">
+                    <span class="dot red"></span><span class="dot yellow"></span
+                    ><span class="dot green"></span>
+                    <span class="term-title">fastfetch</span>
+                </div>
+                <div class="term-body fetch">
+                    <div class="row">
+                        <span class="key">shell</span
+                        ><span class="val">zsh</span>
+                    </div>
+                    <div class="row">
+                        <span class="key">editor</span
+                        ><span class="val">neovim · helix · zed</span>
+                    </div>
+                    <div class="row">
+                        <span class="key">terminal</span
+                        ><span class="val">alacritty · wezterm</span>
+                    </div>
+                    <div class="row">
+                        <span class="key">multiplexer</span
+                        ><span class="val">tmux</span>
+                    </div>
+                    <div class="row">
+                        <span class="key">theme</span
+                        ><span class="val">moonfly</span>
+                    </div>
+                    <div class="row">
+                        <span class="key">manager</span
+                        ><span class="val">gnu stow + git-crypt</span>
+                    </div>
+                    <div class="bars">
+                        <div
+                            class="bar"
+                            style="background: var(--purple)"
+                        ></div>
+                        <div class="bar" style="background: var(--blue)"></div>
+                        <div class="bar" style="background: var(--green)"></div>
+                        <div
+                            class="bar"
+                            style="background: var(--orange)"
+                        ></div>
+                        <div class="bar" style="background: var(--cyan)"></div>
+                        <div class="bar" style="background: var(--red)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1 -->
+            <section>
+                <div class="step-head">
+                    <span class="step-num">01</span
+                    ><span class="step-title">Clone qiliş</span>
+                </div>
+                <div class="term">
+                    <div class="term-bar">
+                        <span class="dot red"></span
+                        ><span class="dot yellow"></span
+                        ><span class="dot green"></span> ><span
+                            class="term-title"
+                            >zsh</span
+                        >
+                    </div>
+                    <div class="term-body" id="step1"></div>
+                </div>
+            </section>
+
+            <!-- STEP 2 -->
+            <section>
+                <div class="step-head">
+                    <span class="step-num">02</span
+                    ><span class="step-title">Stow orqali õrnatiş</span>
+                </div>
+                <div class="term">
+                    <div class="term-bar">
+                        <span class="dot red"></span
+                        ><span class="dot yellow"></span
+                        ><span class="dot green"></span> ><span
+                            class="term-title"
+                            >zsh</span
+                        >
+                    </div>
+                    <div class="term-body" id="step2"></div>
+                </div>
+                <p class="step-note">
+                    Yoki bittalab: <code>stow nvim</code>,
+                    <code>stow tmux</code> — kerakli modullarni tanlab õrnatish
+                    mumkin. Tõqnaşuv çiqsa,
+                    <code>stow --adopt &lt;papka&gt;</code>.
+                </p>
+            </section>
+
+            <!-- STEP 3 -->
+            <section>
+                <div class="step-head">
+                    <span class="step-num">03</span
+                    ><span class="step-title"
+                        >git-crypt orqali decrypt qiliş</span
+                    >
+                </div>
+                <div class="term">
+                    <div class="term-bar">
+                        <span class="dot red"></span
+                        ><span class="dot yellow"></span
+                        ><span class="dot green"></span> ><span
+                            class="term-title"
+                            >zsh</span
+                        >
+                    </div>
+                    <div class="term-body" id="step3"></div>
+                </div>
+                <p class="step-note">
+                    Kalit fayl mavjud bõlmasa, GPG orqali ruhsat berilgan bõlişi
+                    kerak — shunda <code>git-crypt unlock</code> kalitsiz
+                    işlaydi.
+                </p>
+            </section>
+
+            <!-- STEP 4 -->
+            <section>
+                <div class="step-head">
+                    <span class="step-num">04</span
+                    ><span class="step-title">Kerak bõlsa yana crypt'laş</span>
+                </div>
+                <div class="term">
+                    <div class="term-bar">
+                        <span class="dot red"></span
+                        ><span class="dot yellow"></span
+                        ><span class="dot green"></span> ><span
+                            class="term-title"
+                            >zsh</span
+                        >
+                    </div>
+                    <div class="term-body" id="step4"></div>
+                </div>
+                <p class="step-note">
+                    Bu buyruq şifrlangan fayllarni yana binary holatga
+                    qaytaradi. Qayta oçiş uçun 3-qadamni takrorlang. Commit
+                    qilinmagan õzgarişlar <code>lock</code>'dan oldin yõqolib
+                    ketişi mumkin — avval commit qiling.
+                </p>
+            </section>
+
+            <footer>
+                <span>mirjr / dotfiles</span>
+                <a href="https://github.com/mirrrjr/dotfiles"
+                    >github.com/mirrrjr/dotfiles →</a
+                >
+            </footer>
+        </div>
+
+        <script>
+            const TREE = [
+                ["drwxr-xr-x", "-", ".git", "dir"],
+                ["drwxr-xr-x", "-", ".git-crypt", "dir"],
+                ["drwxr-xr-x", "-", "alacritty", "dir"],
+                ["drwxr-xr-x", "-", "assets", "enc"],
+                ["drwxr-xr-x", "-", "fastfetch", "dir"],
+                ["drwxr-xr-x", "-", "gnome", "dir"],
+                ["drwxr-xr-x", "-", "helix", "dir"],
+                ["drwxr-xr-x", "-", "nvim", "dir"],
+                ["drwxr-xr-x", "-", "ranger", "dir"],
+                ["drwxr-xr-x", "-", "tmux", "dir"],
+                ["drwxr-xr-x", "-", "vim", "dir"],
+                ["drwxr-xr-x", "-", "wezterm", "dir"],
+                ["drwxr-xr-x", "-", "zed", "dir"],
+                ["drwxr-xr-x", "-", "zsh", "dir"],
+                [".rw-r--r--", "62", ".gitattributes", "file"],
+                [".rw-r--r--", "0", ".gitignore", "file"],
+                [".rw-r--r--", "2.1k", "README.md", "file"],
+                [".rwxr-xr-x", "1.2k", "script.sh", "file"],
+            ];
+
+            function renderTree() {
+                const host = document.getElementById("tree");
+                TREE.forEach((row, i) => {
+                    const [perm, size, name, kind] = row;
+                    const el = document.createElement("div");
+                    el.className = "ls-row";
+                    el.style.animationDelay = i * 28 + "ms";
+                    const nameClass =
+                        kind === "dir"
+                            ? "dir"
+                            : kind === "enc"
+                              ? "file enc"
+                              : "file";
+                    el.innerHTML =
+                        '<span class="perm">' +
+                        perm +
+                        "</span>" +
+                        '<span class="size">' +
+                        size +
+                        "</span>" +
+                        '<span class="name ' +
+                        nameClass +
+                        '">' +
+                        name +
+                        "</span>";
+                    host.appendChild(el);
+                });
+            }
+
+            function typeInto(hostId, lines, speed) {
+                const host = document.getElementById(hostId);
+                let li = 0;
+
+                function nextLine() {
+                    if (li >= lines.length) return;
+                    const { prompt, text, comment } = lines[li];
+                    const row = document.createElement("div");
+                    row.className = "type-line done";
+                    host.appendChild(row);
+
+                    const promptSpan = document.createElement("span");
+                    promptSpan.className = "prompt";
+                    promptSpan.innerHTML = '<span class="sym">$</span> ';
+                    row.appendChild(promptSpan);
+
+                    const cmdSpan = document.createElement("span");
+                    cmdSpan.className = "cmd";
+                    row.appendChild(cmdSpan);
+
+                    const caret = document.createElement("span");
+                    caret.className = "caret";
+                    row.appendChild(caret);
+
+                    let ci = 0;
+                    const iv = setInterval(() => {
+                        cmdSpan.textContent = text.slice(0, ci + 1);
+                        ci++;
+                        if (ci >= text.length) {
+                            clearInterval(iv);
+                            caret.remove();
+                            if (comment) {
+                                const c = document.createElement("span");
+                                c.className = "cmt";
+                                c.textContent = "  " + comment;
+                                row.appendChild(c);
+                            }
+                            li++;
+                            setTimeout(nextLine, 260);
+                        }
+                    }, speed);
+                }
+                nextLine();
+            }
+
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                renderTree();
+                document
+                    .querySelectorAll(".ls-row")
+                    .forEach((r) => (r.style.animationDelay = "0ms"));
+                const dump = (id, lines) => {
+                    document.getElementById(id).innerHTML = lines
+                        .map(
+                            (l) =>
+                                '<div class="type-line done"><span class="prompt"><span class="sym">$</span></span> <span class="cmd">' +
+                                l.text +
+                                "</span>" +
+                                (l.comment
+                                    ? '<span class="cmt">  ' +
+                                      l.comment +
+                                      "</span>"
+                                    : "") +
+                                "</div>",
+                        )
+                        .join("");
+                };
+                dump("step1", [
+                    {
+                        text: "git clone git@github.com:mirrrjr/dotfiles.git ~/.dotfiles",
+                    },
+                    { text: "cd ~/.dotfiles" },
+                ]);
+                dump("step2", [
+                    {
+                        text: "stow alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh",
+                    },
+                    { text: "stow */", comment: "yoki barchasini birdaniga" },
+                ]);
+                dump("step3", [
+                    { text: "git-crypt unlock /path/to/key" },
+                    {
+                        text: "git-crypt unlock",
+                        comment: "kalit fayl bõlmasa, GPG orqali",
+                    },
+                ]);
+                dump("step4", [{ text: "git-crypt lock" }]);
+            } else {
+                renderTree();
+                const io = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (!entry.isIntersecting) return;
+                            const id = entry.target.id;
+                            io.unobserve(entry.target);
+                            if (id === "step1")
+                                typeInto(
+                                    "step1",
+                                    [
+                                        {
+                                            text: "git clone git@github.com:mirrrjr/dotfiles.git ~/.dotfiles",
+                                        },
+                                        { text: "cd ~/.dotfiles" },
+                                    ],
+                                    18,
+                                );
+                            if (id === "step2")
+                                typeInto(
+                                    "step2",
+                                    [
+                                        {
+                                            text: "stow alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh",
+                                        },
+                                        {
+                                            text: "stow */",
+                                            comment:
+                                                "yoki barchasini birdaniga",
+                                        },
+                                    ],
+                                    12,
+                                );
+                            if (id === "step3")
+                                typeInto(
+                                    "step3",
+                                    [
+                                        {
+                                            text: "git-crypt unlock /path/to/key",
+                                        },
+                                        {
+                                            text: "git-crypt unlock",
+                                            comment:
+                                                "kalit fayl bõlmasa, GPG orqali",
+                                        },
+                                    ],
+                                    18,
+                                );
+                            if (id === "step4")
+                                typeInto(
+                                    "step4",
+                                    [{ text: "git-crypt lock" }],
+                                    22,
+                                );
+                        });
+                    },
+                    { threshold: 0.4 },
+                );
+                ["step1", "step2", "step3", "step4"].forEach((id) =>
+                    io.observe(document.getElementById(id)),
+                );
+            }
+        </script>
+    </body>
+</html>
