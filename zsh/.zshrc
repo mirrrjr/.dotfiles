@@ -124,16 +124,16 @@ export VISUAL=nvim
 alias l='eza -lha --group-directories-first'
 alias ll='eza -lh --group-directories-first'
 
-alias apin='paru -S'
-alias apu='paru -Syu'
-alias sr='paru -Ss'
-alias ar='paru -R'
+#alias apin='paru -S'
+#alias apu='paru -Syu'
+#alias sr='paru -Ss'
+#alias ar='paru -R'
 
-#alias apin='sudo apt install'
-#alias apu='sudo apt update'
-#alias apuu='sudo apt upgrade'
-#alias sr='apt search'
-#alias ar='sudo apt remove'
+alias apin='sudo apt install'
+alias apu='sudo apt update'
+alias apuu='sudo apt upgrade'
+alias sr='apt search'
+alias ar='sudo apt remove'
 
 
 alias v='nvim'
@@ -172,9 +172,7 @@ alias smysql='sudo systemctl start mysql'
 alias smdb='sudo systemctl start mariadb'
 alias spsql='sudo systemctl start postgresql'
 
-alias dfs='cd /home/mirjr/Code/configs/dotfiles'
-
-alias zig14='/home/mirjr/Apps/zig-linux-x86_64-0.14.0/zig'
+alias dfs='cd /home/mirjr/Documents/Code/configs/dotfiles'
 
 # alias wezterm='flatpak run org.wezfurlong.wezterm'
 
@@ -193,45 +191,19 @@ export NVM_DIR="$HOME/.nvm"
 # NVIM
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
-# Laravel
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.config/composer/vendor/bin/:$PATH
-
-# Lua
-export PATH="/home/mirrrjr/Downloads/lua-language-server/bin:$PATH"
-
 # CMAKE
 export PATH=/opt/cmake/bin:$PATH
 
 export OPENSSL_DIR=/usr/lib/x86_64-linux-gnu/openssl
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/pkgconfig
 
+# Rust
 . "$HOME/.cargo/env"
 
 
-# GO
-export PATH=$PATH:/usr/local/go/bin
-
-# bun completions
-[ -s "/home/mirrrjr/.bun/_bun" ] && source "/home/mirrrjr/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # opencode
-export PATH=/home/mirrrjr/.opencode/bin:$PATH
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/home/mirrrjr/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/mirrrjr/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
-# pnpm
-export PNPM_HOME="/home/mirrrjr/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
