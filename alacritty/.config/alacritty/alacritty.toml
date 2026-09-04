@@ -40,7 +40,7 @@ text = "#080808"
 
 [window]
 decorations = "None"
-startup_mode = "Maximized"
+startup_mode = "Windowed"
 
 [scrolling]
 history = 1500
