@@ -135,7 +135,6 @@ alias apuu='sudo apt upgrade'
 alias sr='apt search'
 alias ar='sudo apt remove'
 
-
 alias v='nvim'
 alias vi='nvim'
 alias cod='codium'
@@ -174,11 +173,8 @@ alias spsql='sudo systemctl start postgresql'
 
 alias dfs='cd /home/mirjr/Documents/Code/configs/dotfiles'
 
-# alias wezterm='flatpak run org.wezfurlong.wezterm'
-
 # tmux
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    # Mavjud sessiyaga ulanish yoki yangi yaratish
     tmux attach-session -t default || tmux new-session -s default
 fi
 
@@ -200,19 +196,9 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/pkgconfig
 # Rust
 . "$HOME/.cargo/env"
 
-
-# opencode
-
-
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # starship
 # eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-
-
-
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
