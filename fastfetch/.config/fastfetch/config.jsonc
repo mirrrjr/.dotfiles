@@ -26,7 +26,7 @@
         },
         {
             "type": "packages",
-            "format": "{} (pacman)",
+            // "format": "{} (pacman)",
             "key": "PKG ",
             "keyColor": "33",  
         },
