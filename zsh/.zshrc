@@ -211,3 +211,6 @@ export PATH="$PATH:$ANDROID_HOME/emulator"
 
 # flatpak apps
 alias obs="flatpak run com.obsproject.Studio"
+
+# opencode
+export PATH=/home/mirjr/.opencode/bin:$PATH

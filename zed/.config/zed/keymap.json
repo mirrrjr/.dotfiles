@@ -28,6 +28,18 @@
             "alt-j": "workspace::ActivatePaneDown",
         },
     },
+    {
+        "context": "VimControl && !menu && vim_mode != operator",
+        "bindings": {
+            "space e": "workspace::ToggleRightDock",
+        },
+    },
+    {
+        "context": "ProjectPanel && not_editing",
+        "bindings": {
+            "space e": "workspace::ToggleRightDock",
+        },
+    },
 
     {
         "context": "ProjectPanel",
