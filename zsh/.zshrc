@@ -214,3 +214,5 @@ alias obs="flatpak run com.obsproject.Studio"
 
 # opencode
 export PATH=/home/mirjr/.opencode/bin:$PATH
+
+export PATH="$HOME/.local/bin:$PATH"
