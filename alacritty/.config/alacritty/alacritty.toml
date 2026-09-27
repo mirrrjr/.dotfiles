@@ -49,6 +49,10 @@ general.import = [
 [window]
 decorations = "None"
 startup_mode = "Maximized"
+padding = {
+  x = 2,
+  y = 0
+}
 
 [scrolling]
 history = 1500
