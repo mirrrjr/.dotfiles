@@ -1,0 +1,79 @@
+@import "mocha.css";
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @base;
+    color: @text;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    color: @overlay0;
+}
+
+#workspaces button.focused {
+    background: @surface0;
+    color: @lavender;
+}
+
+#workspaces button.urgent {
+    background: @red;
+    color: @base;
+}
+
+#clock,
+#network,
+#pulseaudio,
+#backlight,
+#battery,
+#tray,
+#mode {
+    padding: 0 10px;
+    color: @text;
+}
+
+#network {
+    color: @sky;
+}
+
+#pulseaudio {
+    color: @green;
+}
+
+#pulseaudio.muted {
+    color: @overlay0;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#battery {
+    color: @peach;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#battery.warning:not(.charging) {
+    color: @maroon;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+    font-weight: bold;
+}
+
+#mode {
+    background: @mauve;
+    color: @base;
+}
