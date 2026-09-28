@@ -29,6 +29,7 @@ window#waybar {
     color: @base;
 }
 
+#custom-lang,
 #clock,
 #network,
 #pulseaudio,

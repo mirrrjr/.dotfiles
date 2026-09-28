@@ -6,7 +6,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "tray"],
+    "modules-right": ["custom/lang", "pulseaudio", "backlight", "battery", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -21,6 +21,18 @@
     "clock": {
         "format": "{:%Y-%m-%d  %H:%M}",
         "tooltip-format": "{:%A, %d %B %Y}"
+    },
+
+    // "sway/language": {
+    // "format": "\uf11c  {short}",
+    // "tooltip-format": "{long}",
+    // "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
+    // },
+    "custom/lang": {
+        "exec": "swaymsg -t get_inputs -r | grep -m1 -o '\"xkb_active_layout_name\": \"[^\"]*\"' | cut -d'\"' -f4 | sed 's/English (US)/us/;s/Uzbek (Latin)/uz/;s/Russian/ru/'",
+        "interval": 1,
+        "format": "\uf11c  {}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
     },
 
     "network": {
