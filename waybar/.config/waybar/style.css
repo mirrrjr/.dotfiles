@@ -41,6 +41,10 @@ window#waybar {
     color: @text;
 }
 
+#custom-lang {
+    color: @mauve
+}
+
 #network {
     color: @sky;
 }
