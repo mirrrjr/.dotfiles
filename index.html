@@ -501,7 +501,7 @@
                 ["drwxr-xr-x", "-", ".git", "dir"],
                 ["drwxr-xr-x", "-", ".git-crypt", "dir"],
                 ["drwxr-xr-x", "-", "alacritty", "dir"],
-                ["drwxr-xr-x", "-", "assets", "enc"],
+                ["drwxr-xr-x", "-", "assets", "dir"],
                 ["drwxr-xr-x", "-", "fastfetch", "dir"],
                 ["drwxr-xr-x", "-", "gnome", "dir"],
                 ["drwxr-xr-x", "-", "helix", "dir"],
@@ -621,9 +621,12 @@
                 ]);
                 dump("step2", [
                     {
-                        text: "stow alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh",
+                        text: "stow -t ~ alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh",
                     },
-                    { text: "stow */", comment: "yoki barchasini birdaniga" },
+                    {
+                        text: "stow -t ~ */",
+                        comment: "yoki barchasini birdaniga",
+                    },
                 ]);
                 dump("step3", [
                     { text: "git-crypt unlock /path/to/key" },
@@ -657,10 +660,10 @@
                                     "step2",
                                     [
                                         {
-                                            text: "stow alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh",
+                                            text: "stow -t ~ alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh",
                                         },
                                         {
-                                            text: "stow */",
+                                            text: "stow -t ~ */",
                                             comment:
                                                 "yoki barchasini birdaniga",
                                         },

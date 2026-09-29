@@ -5,8 +5,8 @@
 ## 1. Clone qiliş
 
 ```sh
-git clone git@github.com:mirrrjr/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
+git clone git@github.com:mirrrjr/dotfiles.git ~/code/dotfiles
+cd ~/code/dotfiles
 ```
 
 ## 2. Stow orqali õrnatiş
@@ -14,13 +14,13 @@ cd ~/.dotfiles
 Har bir papka alohida modul hisoblanadi, kerakli bõlganlarini stow qilib çiqiş mumkin:
 
 ```sh
-stow alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh
+stow -t ~ alacritty fastfetch gnome helix nvim ranger tmux vim wezterm zed zsh
 ```
 
 Yoki barçasini birdaniga:
 
 ```sh
-stow */
+stow -t ~ */
 ```
 
 Agar allaqaçon mavjud fayllar bilan tõqnaşuv (conflict) çiqsa, `stow --adopt <papka>` yordamida eski fayllarni repoga olib kirişingiz yoki qõlda õçirişingiz mumkin.
