@@ -34,7 +34,7 @@ include ~/.config/sway/catppuccin-mocha
 # This is commented in Debian, because the Sway wallpaper files are in a separate
 # package `sway-backgrounds`. Installing this package drops a config file to
 # /etc/sway/config.d/
-output * bg /home/mirjr/Documents/Code/configs/dotfiles/assets/wps/ring.jpg fill
+output * bg /home/mirjr/Documents/Code/configs/dotfiles/assets/wps/debian-black-4k.png fill
 #
 # Example configuration:
 #
