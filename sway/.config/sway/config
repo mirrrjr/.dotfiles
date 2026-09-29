@@ -22,8 +22,8 @@ exec nm-applet --indicator
 exec swayosd-server
 
 # Titlebar'siz, faqat ingichka border
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 1
+default_floating_border pixel 1
 
 include /etc/sway/config-vars.d/*
 include ~/.config/sway/catppuccin-mocha
