@@ -17,9 +17,14 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 set $menu rofi -show drun -show-icons
+# Other configs
 exec_always "killall -q waybar; waybar"
 exec nm-applet --indicator
 exec swayosd-server
+exec mako
+exec ~/.config/sway/layout-watch.sh
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 # Titlebar'siz, faqat ingichka border
 default_border pixel 1
@@ -86,6 +91,12 @@ input type:keyboard {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+
+    # Start browser
+    bindsym $mod+b exec zen
+
+    # Start vscode
+    bindsym $mod+c exec code
 
     # Nautilus
     bindsym $mod+t exec nautilus
@@ -165,8 +176,8 @@ input type:keyboard {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    #bindsym $mod+b splith
+    #bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking

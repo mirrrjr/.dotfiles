@@ -50,7 +50,7 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: @green;
+    color: @teal;
 }
 
 #pulseaudio.muted {
