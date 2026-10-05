@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term foot
 # Your preferred application launcher
 set $menu wofi --show drun --allow-images
 # Other configs
@@ -42,7 +42,7 @@ include ~/.config/sway/catppuccin-mocha
 # This is commented in Debian, because the Sway wallpaper files are in a separate
 # package `sway-backgrounds`. Installing this package drops a config file to
 # /etc/sway/config.d/
-output * bg /home/mirrrjr/Documents/configs/dotfiles/assets/wps/soft-rose.jpg fill
+output * bg /home/mirrrjr/Documents/configs/dotfiles/assets/wps/cat-vibin.png fill
 #
 # Example configuration:
 #
