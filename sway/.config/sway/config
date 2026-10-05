@@ -16,15 +16,18 @@ set $right l
 # Your preferred terminal emulator
 set $term kitty
 # Your preferred application launcher
-set $menu rofi -show drun -show-icons
+set $menu wofi --show drun --allow-images
 # Other configs
-exec_always "killall -q waybar; waybar"
+# exec_always "killall -q waybar; waybar"
+exec_always "pkill -x waybar; while pgrep -x waybar >/dev/null; do sleep 0.1; done; waybar"
 exec nm-applet --indicator
 exec swayosd-server
 exec mako
 exec ~/.config/sway/layout-watch.sh
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+exec_always gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 # Titlebar'siz, faqat ingichka border
 default_border pixel 1
@@ -39,7 +42,7 @@ include ~/.config/sway/catppuccin-mocha
 # This is commented in Debian, because the Sway wallpaper files are in a separate
 # package `sway-backgrounds`. Installing this package drops a config file to
 # /etc/sway/config.d/
-output * bg /home/mirjr/Documents/Code/configs/dotfiles/assets/wps/debian-black-4k.png fill
+output * bg /home/mirrrjr/Documents/configs/dotfiles/assets/wps/soft-rose.jpg fill
 #
 # Example configuration:
 #
@@ -93,13 +96,13 @@ input type:keyboard {
     bindsym $mod+Return exec $term
 
     # Start browser
-    bindsym $mod+b exec zen
+    bindsym $mod+b exec firefox-esr
 
     # Start vscode
     bindsym $mod+c exec code
 
-    # Nautilus
-    bindsym $mod+t exec nautilus
+    # Thunar
+    bindsym $mod+t exec thunar
 
     # Kill focused window
     bindsym $mod+q kill

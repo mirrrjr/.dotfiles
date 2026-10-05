@@ -1,0 +1,9 @@
+{
+  "manifest_version": 2,
+  "name": "Catppuccin New Tab",
+  "version": "1.0",
+  "browser_specific_settings": {
+    "gecko": { "id": "catppuccin-newtab@mirrrjr" }
+  },
+  "chrome_url_overrides": { "newtab": "newtab.html" }
+}

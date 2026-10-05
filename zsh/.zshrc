@@ -171,7 +171,7 @@ alias smysql='sudo systemctl start mysql'
 alias smdb='sudo systemctl start mariadb'
 alias spsql='sudo systemctl start postgresql'
 
-alias dfs='cd /home/mirjr/Documents/Code/configs/dotfiles'
+alias dfs='cd /home/mirrrjr/Documents/configs/dotfiles'
 
 # tmux
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then

@@ -1,0 +1,9 @@
+style=/home/mirrrjr/.config/wofi/mocha-mauve.css
+
+show=drun
+allow_images=true
+image_size=32
+width=500
+height=400
+prompt=Qidirish
+insensitive=true
