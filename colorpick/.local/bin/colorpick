@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+point=$(slurp -p) || exit 1
+color=$(grim -g "$point" -t ppm - | magick - -format '#%[hex:p{0,0}]' info:-)
+
+[ -n "$color" ] || exit 1
+printf '%s' "$color" | wl-copy
+notify-send "Rang tanlandi" "$color"

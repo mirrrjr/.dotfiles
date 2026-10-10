@@ -142,6 +142,7 @@ nnoremap <leader>fm :call FormatFile()<CR>
 " === FORMATTER ===
 function! FormatFile()
   let l:ft = &filetype
+
   if l:ft == 'python'
     execute '!black % && isort %'
   elseif l:ft == 'javascript' || l:ft == 'typescript' || l:ft == 'json' || l:ft == 'yaml' || l:ft == 'markdown'
@@ -155,11 +156,10 @@ function! FormatFile()
   else
     echo "Bu fayl turi uchun formatter topilmadi: " . l:ft
   endif
-  edit!  " faylni qayta yuklab olish
 endfunction
 
 " Saqlaganda avtomatik format (izohlash uchun " qo'shing)
-autocmd BufWritePre * call FormatFile()
+" autocmd BufWritePre * call FormatFile()
 
 
 " === NETRW (ichki fayl daraxti) ===

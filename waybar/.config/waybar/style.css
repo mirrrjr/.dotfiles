@@ -9,19 +9,19 @@
 }
 
 window#waybar {
-    background: @base;
+    background: rgba(30, 30, 46, 0.5); /* @base; */
     color: @text;
 }
 
 #workspaces button {
     padding: 0 8px;
     background: transparent;
-    color: @overlay0;
+    color: @text; /* @overlay0 */
 }
 
 #workspaces button.focused {
-    background: @surface0;
-    color: @lavender;
+    background: @green; /*  @surface0 */
+    color: @base; /* @lavender */
 }
 
 #workspaces button.urgent {

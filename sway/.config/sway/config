@@ -19,7 +19,7 @@ set $up    k
 set $right l
 
 # Default applications
-set $term foot
+set $term kitty
 set $menu wofi --show drun --allow-images
 
 
@@ -62,6 +62,7 @@ exec_always "pkill -x waybar; while pgrep -x waybar >/dev/null; do sleep 0.1; do
 
 # Tray applets and daemons
 exec nm-applet --indicator
+exec blueman-applet
 exec swayosd-server
 exec mako
 
@@ -78,7 +79,7 @@ exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 # ------------------------------------------------------------------------------
 
 # Wallpaper
-output * bg /home/mirrrjr/Documents/configs/dotfiles/assets/wps/cat-vibin.png fill
+output * bg /home/mirrrjr/Documents/configs/dotfiles/assets/wps/windows-xp.jpg stretch
 
 # Example: set resolution and position manually
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -212,6 +213,10 @@ bindsym $mod+Shift+0 move container to workspace number 10
 #bindsym $mod+b splith
 #bindsym $mod+v splitv
 
+# smart_gaps on
+gaps inner 2
+gaps outer 2
+
 # Layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -285,6 +290,9 @@ bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-
 
 # Selected area, straight to the clipboard
 bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | wl-copy
+
+# Color picker (pixel -> HEX -> clipboard)
+bindsym $mod+Ctrl+Print exec ~/.local/bin/colorpick
 
 
 # ------------------------------------------------------------------------------

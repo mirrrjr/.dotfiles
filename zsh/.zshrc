@@ -123,6 +123,7 @@ export VISUAL=nvim
 # Custom aliases
 alias l='eza -lha --group-directories-first'
 alias ll='eza -lh --group-directories-first'
+alias llh='eza -lh --total-size --group-directories-first'
 
 #alias apin='paru -S'
 #alias apu='paru -Syu'
@@ -141,6 +142,7 @@ alias cod='codium'
 alias hx='hx'
 alias r='ranger'
 alias y='yazi'
+alias za='zathura'
 alias ff='fastfetch'
 
 alias pa='php artisan'
