@@ -9,24 +9,30 @@
 }
 
 window#waybar {
-    background: rgba(30, 30, 46, 0.5); /* @base; */
+    background: rgba(24, 24, 37, 0.45); /* @mantle, shaffof */
     color: @text;
 }
 
 #workspaces button {
     padding: 0 8px;
     background: transparent;
-    color: @text; /* @overlay0 */
+    color: @text;
 }
 
-#workspaces button.focused {
-    background: @green; /*  @surface0 */
-    color: @base; /* @lavender */
+#workspaces button:hover {
+    background: alpha(@sky, 0.25);
+    color: @text;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+    background: @blue;
+    color: @crust;
 }
 
 #workspaces button.urgent {
     background: @red;
-    color: @base;
+    color: @crust;
 }
 
 #custom-lang,
@@ -41,44 +47,18 @@ window#waybar {
     color: @text;
 }
 
-#custom-lang {
-    color: @mauve
-}
-
-#network {
-    color: @sky;
-}
-
-#pulseaudio {
-    color: @teal;
-}
-
-#pulseaudio.muted {
-    color: @overlay0;
-}
-
-#backlight {
-    color: @yellow;
-}
-
-#battery {
-    color: @peach;
-}
-
-#battery.charging {
-    color: @green;
-}
-
-#battery.warning:not(.charging) {
-    color: @maroon;
-}
-
-#battery.critical:not(.charging) {
-    color: @red;
-    font-weight: bold;
-}
+#clock          { color: @text; font-weight: bold; }
+#custom-lang    { color: @lavender; }
+#network        { color: @sky; }
+#pulseaudio     { color: @sapphire; }
+#pulseaudio.muted { color: @overlay0; }
+#backlight      { color: @yellow; }   /* quyosh, bulutlar orasidan */
+#battery        { color: @green; }    /* tepalik */
+#battery.charging { color: @teal; }
+#battery.warning:not(.charging) { color: @peach; }
+#battery.critical:not(.charging) { color: @red; font-weight: bold; }
 
 #mode {
-    background: @mauve;
-    color: @base;
+    background: @green;
+    color: @crust;
 }
