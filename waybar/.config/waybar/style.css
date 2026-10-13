@@ -47,16 +47,38 @@ window#waybar {
     color: @text;
 }
 
-#clock          { color: @text; font-weight: bold; }
-#custom-lang    { color: @lavender; }
-#network        { color: @sky; }
-#pulseaudio     { color: @sapphire; }
-#pulseaudio.muted { color: @overlay0; }
-#backlight      { color: @yellow; }   /* quyosh, bulutlar orasidan */
-#battery        { color: @green; }    /* tepalik */
-#battery.charging { color: @teal; }
-#battery.warning:not(.charging) { color: @peach; }
-#battery.critical:not(.charging) { color: @red; font-weight: bold; }
+#clock {
+    color: @text;
+    font-weight: bold;
+}
+#custom-lang {
+    color: @lavender;
+}
+#network {
+    color: @sky;
+}
+#pulseaudio {
+    color: @sapphire;
+}
+#pulseaudio.muted {
+    color: @overlay0;
+}
+#backlight {
+    color: @yellow;
+} /* quyosh, bulutlar orasidan */
+#battery {
+    color: @green;
+} /* tepalik */
+#battery.charging {
+    color: @teal;
+}
+#battery.warning:not(.charging) {
+    color: @peach;
+}
+#battery.critical:not(.charging) {
+    color: @red;
+    font-weight: bold;
+}
 
 #mode {
     background: @green;

@@ -26,9 +26,15 @@ key.set("n", "-", ":Oil<CR>")
 --key.set("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "Help" })
 
 -- Snacks
-key.set("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Files" })
-key.set("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-key.set("n", "<leader>fg", function() Snacks.picker.grep() end, { desc = "Grep" })
+key.set("n", "<leader>ff", function()
+	Snacks.picker.files()
+end, { desc = "Files" })
+key.set("n", "<leader>fb", function()
+	Snacks.picker.buffers()
+end, { desc = "Buffers" })
+key.set("n", "<leader>fg", function()
+	Snacks.picker.grep()
+end, { desc = "Grep" })
 
 -- Clipboard
 key.set({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
@@ -57,3 +63,16 @@ key.set("n", "<A-S-t>", ":tabnew<CR>", opts)
 key.set("n", "<Tab>", ":tabn<CR>", opts)
 key.set("n", "<S-Tab>", ":tabp<CR>", opts)
 key.set("n", "<A-S-w>", ":tabclose<CR>", opts)
+
+-- Diagnostics
+key.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- kursor turgan qatordagi xatoni ko'rsatadi
+key.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, opts)
+key.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, opts)
+key.set("n", "<leader>fd", function()
+	Snacks.picker.diagnostics()
+end, opts) -- hammasini ro'yxatda
+key.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- code action

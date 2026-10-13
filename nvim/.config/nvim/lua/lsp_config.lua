@@ -40,9 +40,14 @@ local servers = {
 		},
 	},
 	html = {},
-	cssls = {},
+	cssls = {
+		settings = {
+			css = { validate = false },
+		},
+	},
 	tailwindcss = {
 		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade", "php" },
+		workspace_required = true,
 	},
 	jsonls = {
 		settings = {
