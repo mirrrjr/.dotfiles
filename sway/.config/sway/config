@@ -34,6 +34,7 @@ include ~/.config/sway/catppuccin-mocha
 # GTK dark mode
 exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 exec_always gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+exec_always gsettings set org.gnome.desktop.interface icon-theme 'WhiteSur-grey'
 
 # Cursor theme and size
 seat seat0 xcursor_theme GoogleDot-Blue 24
