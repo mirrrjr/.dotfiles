@@ -1,6 +1,23 @@
 local opts = { noremap = true, silent = true }
 local key = vim.keymap
 
+-- DVORAK: harakat tugmalari (d h t n = chap, pastga, tepaga, o'ng)
+--local modes = { "n", "x", "o" }
+--key.set(modes, "d", "h")
+--key.set(modes, "h", "j")
+--key.set(modes, "t", "k")
+--key.set(modes, "n", "l")
+
+-- DVORAK: siqib chiqarilgan buyruqlar uchun yangi joylar
+--key.set(modes, "k", "d") -- delete operatori (kk = qatorni o'chirish)
+--key.set(modes, "K", "D") -- qator oxirigacha o'chirish
+
+--key.set(modes, "j", "t") -- till
+--key.set(modes, "J", "T")
+--key.set(modes, "l", "n") -- qidiruvning keyingi natijasi
+--key.set(modes, "L", "N")
+--key.set("n", "<leader>j", "J") -- qatorlarni birlashtirish (J o'rniga)
+
 -- Umumiy
 key.set("n", "<leader>o", ":update<CR> :source<CR>")
 key.set("i", "<C-s>", "<Esc>:w<CR>", opts)

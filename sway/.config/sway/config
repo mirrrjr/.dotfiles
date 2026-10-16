@@ -110,8 +110,8 @@ input type:touchpad {
 
 # Layouts: US / Uzbek (latin) / Russian, toggle with Alt+Space
 input type:keyboard {
-    xkb_layout "us,uz,ru"
-    xkb_variant ",latin"
+    xkb_layout "us,uz,ru,us"
+    xkb_variant ",latin,,dvorak"
     xkb_options "grp:alt_space_toggle"
 }
 
