@@ -1,0 +1,48 @@
+# the language used when one is not manually specified
+default_language = "english200"
+
+[theme]
+default = "none"
+title = "white;bold"
+
+input_border = "yellow"
+prompt_border = "cyan"
+border_type = "rounded"
+
+# to'g'ri yozilgan so'zlar: yorqin yashil, qalin
+prompt_correct = "green;bold"
+# xato yozilgan so'zlar: qizil, qalin va tagiga chizilgan
+prompt_incorrect = "red;bold;underlined"
+# hali yozilmagan so'zlar: gray o'rniga oq, shunda o'qilishi osonroq bo'ladi
+prompt_untyped = "white"
+
+# joriy so'zdagi to'g'ri harflar
+prompt_current_correct = "green;bold"
+# joriy so'zdagi xato harflar
+prompt_current_incorrect = "red;bold;underlined"
+# joriy so'zdagi yozilmagan harflar: sariq, qalin
+prompt_current_untyped = "yellow;bold"
+
+prompt_cursor = "none;underlined"
+
+## results styles ##
+
+# overview text
+results_overview = "cyan;bold"
+# overview border
+results_overview_border = "cyan"
+
+# worst keys text
+results_worst_keys = "cyan;bold"
+# worst keys border
+results_worst_keys_border = "cyan"
+
+# results chart default (includes plotted data)
+results_chart = "cyan"
+# results chart x-axis label
+results_chart_x = "cyan"
+# results chart y-axis label
+results_chart_y = "gray;italic"
+
+# restart/quit prompt in results ui
+results_restart_prompt = "gray;italic"
