@@ -135,6 +135,7 @@ alias apu='sudo apt update'
 alias apuu='sudo apt upgrade'
 alias sr='apt search'
 alias ar='sudo apt remove'
+alias off='poweroff'
 
 alias v='nvim'
 alias vi='nvim'
